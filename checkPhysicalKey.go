@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/exec"
 	"time"
+	"./constants"
 )
 
 func readDiskAndWrieSignature(writer http.ResponseWriter, request *http.Request, file *os.File) {
@@ -28,7 +29,7 @@ func readDiskAndWrieSignature(writer http.ResponseWriter, request *http.Request,
 	//Create signature
 	var opts rsa.PSSOptions
 	opts.SaltLength = rsa.PSSSaltLengthAuto // for simple example
-	PSSmessage := []byte("Hello rsa!")
+	PSSmessage := []byte(constants.SignatureText)
 	newhash := crypto.SHA256
 	pssh := newhash.New()
 	pssh.Write(PSSmessage)

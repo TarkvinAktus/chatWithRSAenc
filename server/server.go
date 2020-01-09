@@ -8,6 +8,7 @@ import (
 "fmt"
 "net/http"
 "io/ioutil"
+"../constants"
 )
 
 func testEqBytes(a, b []byte) bool {
@@ -65,7 +66,7 @@ func testCheckerServer(w http.ResponseWriter, r *http.Request){
 				}else{
 					var opts rsa.PSSOptions  
 					opts.SaltLength = rsa.PSSSaltLengthAuto // for simple example  
-					PSSmessage := []byte("Hello rsa!")  
+					PSSmessage := []byte(constants.SignatureText)  
 					newhash := crypto.SHA256  
 					pssh := newhash.New()  
 					pssh.Write(PSSmessage)  
